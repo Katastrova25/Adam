@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 
-class Allprodicts extends StatelessWidget {
-   Allprodicts({super.key});
-  final List<String> categories = [
-  'All Products', 'Ice Cream', 'Cups', 'Shake', 'Sticks'];
+class Allprodicts extends StatefulWidget {
+  Allprodicts({super.key});
 
+  @override
+  State<Allprodicts> createState() => _AllprodictsState();
+}
+
+class _AllprodictsState extends State<Allprodicts> {
+  final List<String> categories = [
+    'All Products',
+    'Ice Cream',
+    'Cups',
+    'Shake',
+    'Sticks'
+  ];
+
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -14,15 +26,24 @@ class Allprodicts extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
         itemBuilder: (context, index) {
-          final isSelected = index == 0; // Assuming 'Ice Cream' is selected
+          // Assuming 'Ice Cream' is selected
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Chip(
-              label: Text(categories[index]),
-              backgroundColor: isSelected ? Colors.deepPurple : Colors.grey.shade800,
-              labelStyle: const TextStyle(color: Colors.white),
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            ),
+            child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedIndex = index;
+                  });
+
+                },
+                child: Chip(
+                  label: Text(categories[index]),
+                  backgroundColor:
+                  selectedIndex == index ? Colors.deepPurple : Colors.grey.shade800,
+                  labelStyle: const TextStyle(color: Colors.white),
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                )),
           );
         },
       ),

@@ -13,7 +13,7 @@ class CatogeryItme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color(0xFF2A2A2A),
       bottomNavigationBar: const Navagtor(),
       body: SingleChildScrollView(
         child: Column(
